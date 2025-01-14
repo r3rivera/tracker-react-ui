@@ -1,10 +1,17 @@
+import Aside from './components/navigation/Aside';
 import './App.css'
+import MapTracker from './components/main/MapTracker';
+import Container from './components/main/Container';
+
 
 export default function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <>
+    <Aside></Aside>
+    <Container>
+      <MapTracker></MapTracker>
+    </Container>
+    </>
   )
 }
 
