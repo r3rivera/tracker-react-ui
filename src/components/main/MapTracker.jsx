@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Loader } from "@googlemaps/js-api-loader";
 import './MapTracker.scss';
+import TrackTable from "./tracking/TrackTable";
 
 function MapTracker(){
 
@@ -29,9 +30,12 @@ function MapTracker(){
 
     }, []);
    
-
     return (
-    <div id="R2Map"></div>
+        <div className="flex flex-col">
+            <TrackTable></TrackTable>
+            <div id="R2Map"></div>
+        </div>
+
     );
 }
 export default MapTracker;
