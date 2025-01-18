@@ -4,8 +4,9 @@ import axios from "axios";
 
 
 
-function TrackTable(){
+function TrackTable({onSelectedTrack}){
     let [recordData, setRecordData] = useState(null);
+
     useEffect(() => {
         const fetchTracks = async () => {
             try{
@@ -19,24 +20,27 @@ function TrackTable(){
         };
         fetchTracks();
     },[]);
+
     if(recordData && <div>ERROR</div>)
     return(
 
             <div className="w-full">
-                <table className="w-full table-fixed border-collapse border border-slate-500">
-                <thead>
+                <table className="w-full table-fixed border-collapse ">
+                <thead className="font-extrabold bg-slate-500 py-6">
                     <tr>
                         <th>Name</th>
                         <th>Source Address</th>
                         <th>Destination Address</th>
+                        <th>Created By</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className="">
                     {recordData.data.map(item => (
-                        <tr className="p-3 w" key={item.id}>
-                            <td>{item.userInfo.lastName}, {item.userInfo.firstName} {item.userInfo.middleName}</td>
-                            <td>{item.sourceAddress}</td>
-                            <td>{item.targetAddress}</td>
+                        <tr className="hover:bg-white/5 cursor-pointer" key={item.id} onClick={() => onSelectedTrack(item.sourceLocation, item.targetLocation)}>
+                            <td className="pl-3 py-2">{item.userInfo.lastName}, {item.userInfo.firstName} {item.userInfo.middleName}</td>
+                            <td className="pl-3 py-2">{item.sourceAddress}</td>
+                            <td className="pl-3 py-2">{item.targetAddress}</td>
+                            <td className="pl-3 py-2">{JSON.stringify(item.sourceLocation)}</td>
                         </tr>
                     ))}
                 </tbody>
